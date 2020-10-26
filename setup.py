@@ -23,7 +23,8 @@ with open(file='README.md', mode='r', encoding='utf-8') as f:
     readme = f.read()
 
 install_requires = [
-    "requests>=2.20,<3.0"
+    "requests>=2.20,<3.0",
+    "backoff==1.10.0"
 ]
 
 tests_require = [
@@ -36,16 +37,14 @@ tests_require = [
 
 setup(
     name='interakt-track-python',
-    packages=['track'],
+    packages=['track', 'track.tests'],
     version=VERSION,
-    # TODO : Add repository url
-    url='',
+    url='https://github.com/interakt/track-python',
+    download_url=f'https://github.com/interakt/track-python/archive/v{VERSION}.tar.gz',
     author="Amar Jaiswal",
     author_email="amar.j@cawstudios.com",
     maintainer="interakt.ai",
-    # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-    # TODO : Add License
-    license='',
+    license='MIT License',
     description='The easy way to integrate track apis for interakt',
     keywords=['INTERAKT', 'KIWI'],
     install_requires=install_requires,
@@ -57,12 +56,8 @@ setup(
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
-        # TODO: Add license
-        # 'License :: OSI Approved :: MIT License',   # Again, pick a license
+        'License :: OSI Approved :: MIT License',
         "Operating System :: OS Independent",
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',

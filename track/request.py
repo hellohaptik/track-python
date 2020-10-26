@@ -22,6 +22,26 @@ def post(write_key, host=None, path=None, body=None, timeout=10):
     logger.debug(f'Making request: {body}')
     response = _session.post(url=url, headers=headers,
                              json=body, timeout=timeout)
-    payload = response.json()
-    logger.debug(f'Received response: {payload}')
-    return response
+    if response.status_code == 200:
+        logger.debug("Data uploaded successfully")
+        return response
+
+    try:
+        payload = response.json()
+        logger.debug(f'Received response: {payload}')
+        raise APIError(payload.get("result"),
+                       response.status_code, payload.get("message"))
+    except ValueError:
+        raise APIError('Unknown', response.status_code, response.text)
+
+
+class APIError(Exception):
+
+    def __init__(self, status, code, message):
+        self.message = message
+        self.status = status
+        self.code = code
+
+    def __str__(self):
+        msg = "[Segment] {0}: {1} ({2})"
+        return msg.format(self.code, self.message, self.status)
