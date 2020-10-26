@@ -1,0 +1,9 @@
+**sublime**
+*.pyc
+dist
+*.egg-info
+dist
+MANIFEST
+build
+.eggs
+venv
