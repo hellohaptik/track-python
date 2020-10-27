@@ -48,6 +48,7 @@ setup(
     description='The easy way to integrate track apis for interakt',
     keywords=['INTERAKT', 'KIWI'],
     install_requires=install_requires,
+    extras_require={'test': tests_require},
     long_description=readme,
     long_description_content_type='text/markdown',
     classifiers=[
