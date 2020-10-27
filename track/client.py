@@ -1,3 +1,4 @@
+import atexit
 import logging
 import numbers
 
@@ -35,11 +36,13 @@ class Client(object):
         if sync_mode:
             self.consumer = None
         else:
+            atexit.register(self.join)
             self.consumer = Consumer(
                 queue=self.queue, write_key=write_key,
                 host=host, on_error=on_error, retries=max_retries,
                 timeout=timeout
             )
+            self.consumer.start()
 
     def identify(self, user_id=None, country_code='+91', phone_number=None, traits={}):
         """Tie a user to their actions and record traits about them."""
