@@ -61,7 +61,7 @@ The `identify` call has the following fields:
 |phone_number|str|phone_number without country_code (eg: "9876598765")|
 |traits|dict|A dict of traits you know about the user. Things like: `email`, `name` or `age`|
 
-**NOTE:** Atleast of these two is required for user identification :
+**NOTE:** Atleast one of these two is required for user identification :
 
  - **user_id**, OR
  - **phone_number** with **country_code**
