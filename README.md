@@ -54,7 +54,7 @@ track.identify(
 Example `event` call:
 ```
 track.event(
-	user_id="changu_mangu",
+	user_id="<USER_ID>",
 	event="Add to Cart",
 	traits={"amount": 200}
 )
