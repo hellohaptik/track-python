@@ -40,7 +40,7 @@ class Consumer(Thread):
         queue = self.queue
         queue_msg = None
         try:
-            queue_msg = queue.get(block=True)
+            queue_msg = queue.get(block=True, timeout=1)
         except Empty:
             self.logger.debug("queue is empty now")
 

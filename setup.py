@@ -12,12 +12,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'track'))
 from track.version import VERSION  # noqa
 
 
-# 'setup.py publish' shortcut
-if sys.argv[-1] == 'publish':
-    os.system('python3 setup.py sdist bdist_wheel')
-    os.system('twine upload dist/*')
-    sys.exit()
-
 # TODO: update long description in README.md
 with open(file='README.md', mode='r', encoding='utf-8') as f:
     readme = f.read()

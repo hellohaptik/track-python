@@ -80,7 +80,7 @@ class Client(object):
         size = queue.qsize()
         queue.join()
         # Note that this message may not be precise, because of threading.
-        self.logger.debug('successfully flushed about %s items.', size)
+        self.logger.debug('Successfully flushed about %s items.', size)
 
     def join(self):
         """Ends the consumer thread once the queue is empty.
