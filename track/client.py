@@ -19,7 +19,8 @@ class Client(object):
     logger = logging.getLogger('interakt')
 
     def __init__(self, write_key=None, host=None, debug=False,
-                 sync_mode=True, timeout=10, max_queue_size=10000, on_error=None, max_retries=3):
+                 sync_mode=True, timeout=10, max_queue_size=10000,
+                 on_error=None, max_retries=3, flush_interval=0.5):
         """Create a new interakt client"""
         require('write_key', write_key, str)
 
@@ -40,7 +41,7 @@ class Client(object):
             self.consumer = Consumer(
                 queue=self.queue, write_key=write_key,
                 host=host, on_error=on_error, retries=max_retries,
-                timeout=timeout
+                timeout=timeout, flush_interval=flush_interval
             )
             self.consumer.start()
 

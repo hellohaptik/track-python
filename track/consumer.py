@@ -14,7 +14,8 @@ class Consumer(Thread):
     logger = logging.getLogger('interakt')
 
     def __init__(self, queue, write_key, host=None,
-                 on_error=None, retries=3, timeout=10):
+                 on_error=None, retries=3, timeout=10,
+                 flush_interval=0.5):
         Thread.__init__(self)
         self.running = True
         self.queue = queue
@@ -23,6 +24,7 @@ class Consumer(Thread):
         self.on_error = on_error
         self.retries = retries
         self.timeout = timeout
+        self.flush_interval = flush_interval
 
     def run(self):
         """Runs the consumer."""
@@ -40,7 +42,7 @@ class Consumer(Thread):
         queue = self.queue
         queue_msg = None
         try:
-            queue_msg = queue.get(block=True, timeout=1)
+            queue_msg = queue.get(block=True, timeout=self.flush_interval)
         except Empty:
             self.logger.debug("queue is empty now")
 
