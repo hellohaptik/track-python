@@ -22,7 +22,7 @@ In development you might want to enable some settings to make it easier to spot 
 ```
 def on_error(error, queue_msg):
     print("An error occurred", error)
-	print("Queue message", queue_msg)
+    print("Queue message", queue_msg)
 
 track.debug = True
 track.on_error = on_error
