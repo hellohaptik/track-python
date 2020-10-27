@@ -34,7 +34,6 @@ setup(
     packages=['track', 'track.tests'],
     version=VERSION,
     url='https://github.com/interakt/track-python',
-    download_url=f'https://github.com/interakt/track-python/archive/v{VERSION}.tar.gz',
     author="Amar Jaiswal",
     author_email="amar.j@cawstudios.com",
     maintainer="interakt.ai",
