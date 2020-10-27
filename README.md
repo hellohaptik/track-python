@@ -20,8 +20,9 @@ The default initialization settings are production-ready and queue messages to b
 
 In development you might want to enable some settings to make it easier to spot problems. Enabling `track.debug` will log debugging info to the Python logger. You can also add an `on_error` handler to specifically print out the response you’re seeing from our API.
 ```
-def on_error(error, items):
-    print("An error occurred:", error)
+def on_error(error, queue_msg):
+    print("An error occurred", error)
+	print("Queue message", queue_msg)
 
 track.debug = True
 track.on_error = on_error
