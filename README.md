@@ -7,11 +7,19 @@ Install `interakt-track-python` using pip
 
     pip install interakt-track-python
     
+## Authentication
 Inside your app, you’ll want to **set your** `write_key` before making any track calls:
+```
+import track
 
-    import track
-    
-    track.write_key =  "YOUR_WRITE_KEY"
+track.write_key =  "YOUR_WRITE_KEY"
+```
+Interakt Track APIs uses HTTP Basic Auth, which involves a `‘username:password’` that is **base64 encoded** and prepended with the string `‘Basic ‘`. 
+
+Your **write_key** is your `username` and `password` is empty. Which means if your **write_key** is `'abcd123'`,  a colon is added to it, and then the password field is left empty. 
+
+After base64 encoding `'abcd123:'` becomes `'YWJjZDEyMzo='`; and this is passed in the authorization header like so: `'Authorization: Basic YWJjZDEyMzo='`
+
 
 
 ## Development Settings
@@ -85,4 +93,4 @@ The `event` call has the following fields:
 |--|--|--|
 |user_id|str or int|The ID for the user in your database.|
 |event|str|Name of the event you want to track, For eg: "Product Added".|
-|traits|dict|dictionary of properties for the event. If the event was **Product Added**, it might have properties like `price` or `product_name`|
+|traits|dict|dictionary of properties for the event. If the event was **Product Added**, it might have properties like `price` or `product_name`.|
