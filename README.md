@@ -85,4 +85,4 @@ The `event` call has the following fields:
 |--|--|--|
 |user_id|str or int|The ID for the user in your database.|
 |event|str|Name of the event you want to track, For eg: "Product Added".|
-|traits|dict|dictionary of properties for the event. If the event was **Product Added**, it might have properties like `price` or `product_name`.|
+|traits|dict|dictionary of properties for the event. If the event was **Product Added**, it might have properties like `price` or `product_name`|
