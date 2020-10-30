@@ -13,15 +13,15 @@ logger = logging.getLogger('interakt')
 
 def post(write_key, host=None, path=None, body=None, timeout=10):
     """Post the msg to the API"""
+    auth = HTTPBasicAuth(username=write_key, password="")
     headers = {
         'Content-Type': 'application/json',
-        'User-Agent': f'interakt-track-python/{VERSION}',
-        'Authorization': write_key
+        'User-Agent': f'interakt-track-python/{VERSION}'
     }
     url = remove_trailing_slash(host or DEFAULT_HOST) + path
     logger.debug(f'Making request: {body}')
     response = _session.post(url=url, headers=headers,
-                             json=body, timeout=timeout)
+                             auth=auth, json=body, timeout=timeout)
     if response.status_code == 200:
         logger.debug("Data uploaded successfully")
         return response

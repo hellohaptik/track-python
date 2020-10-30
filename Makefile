@@ -1,6 +1,7 @@
 release:
+	python3 setup.py clean
 	python3 setup.py sdist bdist_wheel
-	twine upload dist/*
+	twine upload --skip-existing dist/*
 
 install:
 	python3 setup.py sdist bdist_wheel
