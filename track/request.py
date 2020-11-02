@@ -37,11 +37,11 @@ def post(write_key, host=None, path=None, body=None, timeout=10):
 
 class APIError(Exception):
 
-    def __init__(self, status, code, message):
+    def __init__(self, status, status_code, message):
         self.message = message
         self.status = status
-        self.code = code
+        self.status_code = status_code
 
     def __str__(self):
         msg = "[interakt-track] StatusCode({0}): {1} (Success={2})"
-        return msg.format(self.code, self.message, self.status)
+        return msg.format(self.status_code, self.message, self.status)

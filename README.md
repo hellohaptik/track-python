@@ -53,7 +53,7 @@ The `identify` lets you tie a user to their actions and record traits about them
 Example `identify` call:
 ```
 track.identify(
-	user_id="<USER_ID>",
+	user_id="<user_id in your db>",
 	traits={
 		"name": "John Doe",
 		"email": "john@email.com",
@@ -76,19 +76,19 @@ The `identify` call has the following fields:
 
 
 
-
 ## Event
 `event` track API lets you record the actions your users perform. Every action triggers what we call an “event”, which can also have associated properties.
 
 Example `event` call:
 ```
 track.event(
-	user_id="changu_mangu",
+	user_id="<user_id in your db>",
 	event="Product Added",
 	traits={"price": 200}
 )
 ```
 The `event` call has the following fields:
+
 |Field|Data type|Description|
 |--|--|--|
 |user_id|str or int|The ID for the user in your database.|

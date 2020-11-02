@@ -69,7 +69,7 @@ class Consumer(Thread):
                 # retry on server errors and client errors
                 # with 429 status code (rate limited),
                 # don't retry on other client errors
-                return (400 <= exc.status < 500) and exc.status != 429
+                return (400 <= exc.status_code < 500) and exc.status_code != 429
             else:
                 # retry on all other errors (eg. network)
                 return False
