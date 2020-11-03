@@ -8,15 +8,15 @@ Install `interakt-track-python` using pip
     pip install interakt-track-python
     
 ## Authentication
-Inside your app, you’ll want to **set your** `write_key` before making any track calls:
+Inside your app, you’ll want to **set your** `api_key` before making any track calls:
 ```
 import track
 
-track.write_key =  "YOUR_WRITE_KEY"
+track.api_key =  "YOUR_API_KEY"
 ```
 Interakt Track APIs uses HTTP Basic Auth, which involves a `‘username:password’` that is **base64 encoded** and prepended with the string `‘Basic ‘`. 
 
-Your **write_key** is your `username` and `password` is empty. Which means if your **write_key** is `'abcd123'`,  a colon is added to it, and then the password field is left empty. 
+Your **api_key** is your `username` and `password` is empty. Which means if your **api_key** is `'abcd123'`,  a colon is added to it, and then the password field is left empty. 
 
 After base64 encoding `'abcd123:'` becomes `'YWJjZDEyMzo='`; and this is passed in the authorization header like so: `'Authorization: Basic YWJjZDEyMzo='`
 
@@ -61,7 +61,7 @@ track.identify(
 	}
 )
 ```
-The `identify` call has the following fields:
+#### The `identify` call has the following fields:
 |Field|Data type|Description|
 |--|--|--|
 |user_id|str or int|The ID for the user in your database.|
@@ -87,7 +87,7 @@ track.event(
 	traits={"price": 200}
 )
 ```
-The `event` call has the following fields:
+#### The `event` call has the following fields:
 
 |Field|Data type|Description|
 |--|--|--|

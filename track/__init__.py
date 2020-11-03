@@ -3,7 +3,7 @@ from track.client import Client
 __version__ = VERSION
 
 """Settings"""
-write_key = None
+api_key = None
 default_client = None
 host = None
 sync_mode = False
@@ -45,7 +45,7 @@ def _proxy(method, *args, **kwargs):
     global default_client
     if not default_client:
         default_client = Client(
-            write_key=write_key,
+            write_key=api_key,
             host=host,
             debug=debug,
             sync_mode=sync_mode,
