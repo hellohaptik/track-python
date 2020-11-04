@@ -7,6 +7,9 @@ install:
 	python3 setup.py sdist bdist_wheel
 	pip3 install -e .
 
-.PHONY: release install
+uninstall:
+	pip3 uninstall interakt-track-python
+
+.PHONY: release install uninstall
 
 

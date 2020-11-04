@@ -14,9 +14,9 @@ on_error = None
 max_queue_size = 10000
 
 
-def identify(user_id=None, country_code='+91', phone_number=None, traits={}):
+def user(user_id=None, country_code='+91', phone_number=None, traits={}):
     """Send an identify call for customer"""
-    return _proxy('identify', user_id=user_id, country_code=country_code,
+    return _proxy('user', user_id=user_id, country_code=country_code,
                   phone_number=phone_number, traits=traits)
 
 
