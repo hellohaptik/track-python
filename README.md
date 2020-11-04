@@ -41,12 +41,12 @@ track.on_error = on_error
 
 
 # APIs
-## Identify
+## User
 The `identify` lets you tie a user to their actions and record traits about them. It includes a unique **User ID** or **Phone Number and Country Code** any optional traits you know about them.
 
-Example `identify` call:
+Example `user` call:
 ```
-track.identify(
+track.user(
 	user_id="<user_id in your db>",
 	traits={
 		"name": "John Doe",
@@ -55,7 +55,7 @@ track.identify(
 	}
 )
 ```
-#### The `identify` call has the following fields:
+#### The `user` call has the following fields:
 |Field|Data type|Description|
 |--|--|--|
 |user_id|str or int|The ID for the user in your database.|
