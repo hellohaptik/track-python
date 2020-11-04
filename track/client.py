@@ -45,7 +45,7 @@ class Client(object):
             )
             self.consumer.start()
 
-    def identify(self, user_id=None, country_code='+91', phone_number=None, traits={}):
+    def user(self, user_id=None, country_code='+91', phone_number=None, traits={}):
         """Tie a user to their actions and record traits about them."""
         if not user_id and not phone_number:
             raise AssertionError("Either user_id or phone_number is required")
