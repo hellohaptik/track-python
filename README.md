@@ -14,12 +14,6 @@ import track
 
 track.api_key =  "YOUR_API_KEY"
 ```
-Interakt Track APIs uses HTTP Basic Auth, which involves a `‘username:password’` that is **base64 encoded** and prepended with the string `‘Basic ‘`. 
-
-Your **api_key** is your `username` and `password` is empty. Which means if your **api_key** is `'abcd123'`,  a colon is added to it, and then the password field is left empty. 
-
-After base64 encoding `'abcd123:'` becomes `'YWJjZDEyMzo='`; and this is passed in the authorization header like so: `'Authorization: Basic YWJjZDEyMzo='`
-
 
 
 ## Development Settings
