@@ -42,7 +42,7 @@ track.on_error = on_error
 
 # APIs
 ## User
-The `identify` lets you tie a user to their actions and record traits about them. It includes a unique **User ID** or **Phone Number and Country Code** any optional traits you know about them.
+The track `user` call lets you tie a user to their actions and record traits about them. It includes a unique **User ID** or **Phone Number and Country Code** any optional traits you know about them.
 
 Example `user` call:
 ```
