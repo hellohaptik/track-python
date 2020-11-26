@@ -18,7 +18,8 @@ with open(file='README.md', mode='r', encoding='utf-8') as f:
 
 install_requires = [
     "requests>=2.20,<3.0",
-    "backoff==1.10.0"
+    "backoff==1.10.0",
+    "phonenumbers"
 ]
 
 tests_require = [
@@ -46,7 +47,7 @@ setup(
     long_description_content_type='text/markdown',
     classifiers=[
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',

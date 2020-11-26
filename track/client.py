@@ -5,7 +5,7 @@ import numbers
 from track.const import ApiPaths
 from track.consumer import Consumer
 from track.request import post
-from track.utils import require, stringify
+from track.utils import require, stringify, verify_country_code
 
 try:
     import queue
@@ -49,30 +49,63 @@ class Client(object):
         """Tie a user to their actions and record traits about them."""
         if not user_id and not phone_number:
             raise AssertionError("Either user_id or phone_number is required")
+
         if user_id:
             require('user_id', user_id, ID_TYPES)
+
         if phone_number:
             require('phone_number', phone_number, str)
+            if not phone_number.isdigit():
+                raise AssertionError(f"Invalid phone_number {phone_number}")
+
+        if country_code:
+            require('country_code', country_code, str)
+            verify_country_code(country_code)
+
         require('traits', traits, dict)
         body = {
-            'userId': stringify(val=user_id),
-            'countryCode': country_code,
-            'phoneNumber': phone_number,
             'traits': traits
         }
+        if user_id:
+            body['userId'] = stringify(val=user_id)
+
+        if phone_number:
+            body['countryCode'] = country_code
+            body['phoneNumber'] = phone_number
+
         return self.__queue_request(path=ApiPaths.User.value, body=body)
 
-    def event(self, user_id=None, event=None, traits={}):
+    def event(self, user_id=None, event=None, traits={}, country_code="+91", phone_number=None):
         """To record user events"""
         traits = traits or {}
-        require('user_id', user_id, ID_TYPES)
+        if not user_id and not phone_number:
+            raise AssertionError("Either user_id or phone_number is required")
+
+        if user_id:
+            require('user_id', user_id, ID_TYPES)
+
+        if phone_number:
+            require('phone_number', phone_number, str)
+            if not phone_number.isdigit():
+                raise AssertionError(f"Invalid phone_number {phone_number}")
+
+        if country_code:
+            require('country_code', country_code, str)
+            verify_country_code(country_code)
+
         require('traits', traits, dict)
         require('event', event, str)
         body = {
-            'userId': stringify(val=user_id),
             'event': event,
             'traits': traits
         }
+        if user_id:
+            body['userId'] = stringify(val=user_id)
+
+        if phone_number:
+            body['countryCode'] = country_code
+            body['phoneNumber'] = phone_number
+
         return self.__queue_request(path=ApiPaths.Event.value, body=body)
 
     def flush(self):

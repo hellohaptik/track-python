@@ -20,9 +20,10 @@ def user(user_id=None, country_code='+91', phone_number=None, traits={}):
                   phone_number=phone_number, traits=traits)
 
 
-def event(user_id=None, event=None, traits={}):
+def event(user_id=None, event=None, traits={}, country_code="+91", phone_number=None):
     """Send an event track call."""
-    return _proxy('event', user_id=user_id, event=event, traits=traits)
+    return _proxy('event', user_id=user_id, event=event, traits=traits,
+                  country_code=country_code, phone_number=phone_number)
 
 
 def flush():
