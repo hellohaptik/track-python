@@ -54,13 +54,11 @@ class Client(object):
             require('user_id', user_id, ID_TYPES)
 
         if phone_number:
+            require('country_code', country_code, str)
+            verify_country_code(country_code)
             require('phone_number', phone_number, str)
             if not phone_number.isdigit():
                 raise AssertionError(f"Invalid phone_number {phone_number}")
-
-        if country_code:
-            require('country_code', country_code, str)
-            verify_country_code(country_code)
 
         require('traits', traits, dict)
         body = {
@@ -85,16 +83,17 @@ class Client(object):
             require('user_id', user_id, ID_TYPES)
 
         if phone_number:
+            require('country_code', country_code, str)
+            verify_country_code(country_code)
             require('phone_number', phone_number, str)
             if not phone_number.isdigit():
                 raise AssertionError(f"Invalid phone_number {phone_number}")
 
-        if country_code:
-            require('country_code', country_code, str)
-            verify_country_code(country_code)
-
         require('traits', traits, dict)
         require('event', event, str)
+        if not event:
+            raise AssertionError("event is required")
+
         body = {
             'event': event,
             'traits': traits
