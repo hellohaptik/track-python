@@ -88,3 +88,5 @@ track.event(
 |user_id|str or int|The ID for the user in your database.|
 |event|str|Name of the event you want to track, For eg: "Product Added".|
 |traits|dict|dictionary of properties for the event. If the event was **Product Added**, it might have properties like `price` or `product_name`.|
+|country_code|str|Optional: Country Code of the Phone Number|
+|phone_number|str|Optional: Phone number of the user (In case you don't have user_id)|
