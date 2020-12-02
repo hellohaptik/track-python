@@ -48,6 +48,8 @@ Example `user` call:
 ```
 track.user(
 	user_id="<user_id in your db>",
+	country_code="+91",
+	phone_number="9999999999",
 	traits={
 		"name": "John Doe",
 		"email": "john@email.com",
@@ -78,7 +80,9 @@ Example `event` call:
 track.event(
 	user_id="<user id in your db>",
 	event="Product Added",
-	traits={"price": 200}
+	traits={"price": 200},
+	country_code="+91",
+	phone_number="9999999999",
 )
 ```
 #### The `event` call has the following fields:
