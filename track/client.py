@@ -18,14 +18,14 @@ ID_TYPES = (numbers.Number, str)
 class Client(object):
     logger = logging.getLogger('interakt')
 
-    def __init__(self, write_key=None, host=None, debug=False,
-                 sync_mode=True, timeout=10, max_queue_size=10000,
+    def __init__(self, api_key=None, host=None, debug=False,
+                 sync_mode=False, timeout=10, max_queue_size=10000,
                  on_error=None, max_retries=3, flush_interval=0.5):
         """Create a new interakt client"""
-        require('write_key', write_key, str)
+        require('api_key', api_key, str)
 
         self.queue = queue.Queue(maxsize=max_queue_size)
-        self.write_key = write_key
+        self.api_key = api_key
         self.debug = debug
         self.host = host
         self.sync_mode = sync_mode
@@ -39,7 +39,7 @@ class Client(object):
         else:
             atexit.register(self.join)
             self.consumer = Consumer(
-                queue=self.queue, write_key=write_key,
+                queue=self.queue, api_key=api_key,
                 host=host, on_error=on_error, retries=max_retries,
                 timeout=timeout, flush_interval=flush_interval
             )
@@ -134,7 +134,7 @@ class Client(object):
     def __queue_request(self, path, body):
         # Directly call api in sync mode and return response
         if self.sync_mode:
-            return post(self.write_key, host=self.host, path=path, body=body, timeout=self.timeout)
+            return post(self.api_key, host=self.host, path=path, body=body, timeout=self.timeout)
 
         queue_msg = {
             'path': path,

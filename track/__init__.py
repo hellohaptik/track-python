@@ -46,7 +46,7 @@ def _proxy(method, *args, **kwargs):
     global default_client
     if not default_client:
         default_client = Client(
-            write_key=api_key,
+            api_key=api_key,
             host=host,
             debug=debug,
             sync_mode=sync_mode,
