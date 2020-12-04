@@ -13,13 +13,13 @@ class Consumer(Thread):
     """Consumes the messages from the client's queue."""
     logger = logging.getLogger('interakt')
 
-    def __init__(self, queue, write_key, host=None,
+    def __init__(self, queue, api_key, host=None,
                  on_error=None, retries=3, timeout=10,
                  flush_interval=0.5):
         Thread.__init__(self)
         self.running = True
         self.queue = queue
-        self.write_key = write_key
+        self.api_key = api_key
         self.host = host
         self.on_error = on_error
         self.retries = retries
@@ -80,7 +80,7 @@ class Consumer(Thread):
             max_tries=self.retries + 1,
             giveup=fatal_exception)
         def send_request():
-            post(write_key=self.write_key, host=self.host,
+            post(api_key=self.api_key, host=self.host,
                  path=queue_msg['path'], body=queue_msg['body'], timeout=self.timeout)
 
         send_request()

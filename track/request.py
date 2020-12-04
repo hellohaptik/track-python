@@ -11,9 +11,9 @@ _session = sessions.session()
 logger = logging.getLogger('interakt')
 
 
-def post(write_key, host=None, path=None, body=None, timeout=10):
+def post(api_key, host=None, path=None, body=None, timeout=10):
     """Post the msg to the API"""
-    auth = HTTPBasicAuth(username=write_key, password="")
+    auth = HTTPBasicAuth(username=api_key, password="")
     headers = {
         'Content-Type': 'application/json',
         'User-Agent': f'interakt-track-python/{VERSION}'
