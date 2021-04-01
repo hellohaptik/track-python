@@ -53,7 +53,7 @@ class Consumer(Thread):
             self.request(queue_msg=queue_msg)
             success = True
         except Exception as e:
-            self.logger.error(f"Error uploading: {e}")
+            self.logger.warning(f"Error uploading: {e}")
             success = False
             if self.on_error:
                 self.on_error(e, queue_msg)
