@@ -6,9 +6,22 @@ SDK : [interakt-track-python](https://pypi.org/project/interakt-track-python/)
 Install `interakt-track-python` using pip
 
     pip install interakt-track-python
-    
+
 ## Authentication
-Inside your app, you’ll want to **set your** `api_key` before making any track calls:
+Inside your app, you’ll want to set your `api_key` before making any track calls:
+
+To find your API key,
+
+- go to your interakt account's Settings --> Developer Settings
+
+- copy the Secret Key.
+
+- Make sure you base64 decode this Secret Key (you may choose to do that from [Base64 Decode and Encode- online](https://www.base64decode.org/) )
+
+- Erase the ':' at the end of the base64 decoded key
+
+- Use this key
+
 ```
 import track
 
@@ -42,55 +55,10 @@ track.on_error = on_error
 
 # APIs
 ## User
-The track `user` call lets you tie a user to their actions and record traits about them. It includes a unique **User ID** or **Phone Number and Country Code** any optional traits you know about them.
+go to [WhatsApp Business API Documentation  | How to use WhatsAPP API for your Business](https://www.interakt.ai/resource-center/api-doc#User-Track-API)  and add the entire content till before “Where can you see the added Users in your interakt dashboard?”
 
-Example `user` call:
-```
-track.user(
-	user_id="<user_id in your db>",
-	country_code="+91",
-	phone_number="9999999999",
-	traits={
-		"name": "John Doe",
-		"email": "john@email.com",
-		"age": 24
-	}
-)
-```
-#### The `user` call has the following fields:
-|Field|Data type|Description|
-|--|--|--|
-|user_id|str or int|The ID for the user in your database.|
-|country_code|str|country code for the phone_number (default value is "+91")|
-|phone_number|str|phone_number without country_code (eg: "9876598765")|
-|traits|dict|A dict of traits you know about the user. Things like: `email`, `name` or `age`|
-
-**NOTE:** Atleast one of these two is required for user identification :
-
- - **user_id**, OR
- - **phone_number** with **country_code**
 
 
 
 ## Event
-`event` track API lets you record the actions your users perform. Every action triggers what we call an “event”, which can also have associated properties.
-
-Example `event` call:
-```
-track.event(
-	user_id="<user id in your db>",
-	event="Product Added",
-	traits={"price": 200},
-	country_code="+91",
-	phone_number="9999999999",
-)
-```
-#### The `event` call has the following fields:
-
-|Field|Data type|Description|
-|--|--|--|
-|user_id|str or int|The ID for the user in your database.|
-|event|str|Name of the event you want to track, For eg: "Product Added".|
-|traits|dict|dictionary of properties for the event. If the event was **Product Added**, it might have properties like `price` or `product_name`.|
-|country_code|str|Optional: Country Code of the Phone Number|
-|phone_number|str|Optional: Phone number of the user (In case you don't have user_id)|
+go to [WhatsApp Business API Documentation  | How to use WhatsAPP API for your Business](https://www.interakt.ai/resource-center/api-doc#Event-Track-API)   and add the entire content till before “Where can you see the added Events in your interakt dashboard?”
