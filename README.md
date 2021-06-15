@@ -61,22 +61,16 @@ The user track API allows customers to record the attributes specific to the use
 **For adding a new user to your interakt dashboard**, the following payload could be sent in the API call:
 
 ```
-POST https://api.interakt.ai/v1/public/track/users/
-‍
-{
-
-“userId”: “0123abc45d”,
-“phoneNumber”: “9967536783”,
-“countryCode”: “+91”,
-“traits”: {
-         “name”: “Gavin Roberts”,
-          “email”: “gavinroberts01@outlook.com”,
-          “dob”: “1996-12-01”,
-         "Sample trait a":"value y"
-
-    }
-
-}
+track.user(
+	user_id="<user_id in your db>",
+	country_code="+91",
+	phone_number="9999999999",
+	traits={
+		"name": "John Doe",
+		"email": "john@email.com",
+		"age": 24
+	}
+)
 ```
 
 The different user attributes (traits) can be of the following data types: String, Numbers, Boolean, Datetime, List. **Check out the different filter options available in interakt, for different trait types -** [link](https://ik.imagekit.io/z4utvq9kty5/interakt_filters_K5dMwG4qe.pdf).
@@ -98,7 +92,7 @@ The above API call records the “userId” or “phoneNumber” (with “countr
 </tr>
 
 <tr>
-<td>userId</td>
+<td>user_id</td>
 <td>String</td>
 <td><strong>Optional**</strong></td>
 <td>	The userId can take any string value that you specify. This will henceforth be used as a unique identifier for the user.
@@ -107,18 +101,18 @@ The user id parameter will remain the same throughout the lifetime of the custom
 </tr>
 
 <tr>
-<td>phoneNumber</td>
+<td>phone_number</td>
 <td>String</td>
-<td><strong>Optional**</strong></td>
+<td><strong>Mandatory**</strong></td>
 <td>phone number of the user without the country code (we recommend that you send the Whatsapp phone number of the user, so that you can send messages to that user via interakt, else the messages won’t get sent)
 
 </td>
 </tr>
 
 <tr>
-<td>countryCode</td>
+<td>country_code</td>
 <td>String</td>
-<td><strong>Optional**</strong></td>
+<td><strong>Mandatory**</strong></td>
 <td>Country code of the phone number. The default value is “+91”.
 
 </td>
@@ -132,7 +126,7 @@ The user id parameter will remain the same throughout the lifetime of the custom
 </tr>
 
 <tr>
-<td>createdAt	</td>
+<td>created_at</td>
 <td>Date</td>
 <td>Optional</td>
 <td>Timestamp of the event in ISO-8601 format date string. If you have not passed the “createdAt” property, we will automatically use the current utc server time as the value of “createdAt”
@@ -146,32 +140,27 @@ The user id parameter will remain the same throughout the lifetime of the custom
 **To update attributes for the above user**, the following payload could be sent in the API call: (suppose the “dob” attribute needs to be changed to “1997-12-01”).
 ‍
 ```
-POST https://api.interakt.ai/v1/public/track/users/
-‍
-{
-          “userId”: “0123abc45d”,
-          “phoneNumber”: “9967536783”,
-          “countryCode”: “+91”,
-          “traits”: {
-                   “dob”: “1997-12-01”
-         }
-}
+track.user(
+	user_id="<user_id in your db>",
+	country_code="+91",
+	phone_number="9999999999",
+	traits={
+        “dob”: “1997-12-01”
+    }
+)
 ```
 ‍
 **To add a new attribute for the above user**, the following payload could be sent in the API call: (suppose the “pin code” attribute needs to be added).
 ‍
 ```
-POST https://api.interakt.ai/v1/public/track/users/
-‍
-{
-
-          “userId”: “0123abc45d”,
-          “phoneNumber”: “9967536783”,
-          “countryCode”: “+91”,
-          “traits”: {
-                   “Pin code”: “400001”
-          }
-}
+track.user(
+	user_id="<user_id in your db>",
+	country_code="+91",
+	phone_number="9999999999",
+	traits={
+    	“Pin code”: “400001”
+    }
+)
 ```
 ‍
 ‍**Note**:
@@ -194,18 +183,19 @@ The event track API allows customers to record user actions. Each user action (s
 **For adding a new event for a particular user**, the following payload could be sent in the API call:
 
 ```‍
-POST https://api.interakt.ai/v1/public/track/events/
 
-{
-	“userId”: “0123abc45d”,
-	“event”: “OrderPlaced”,
-	“traits”: {
-			“orderCreatedBy”: “Gavin Roberts”,
-			“orderCreatedDate”: “2020-11-01T012:10:26.122Z”,
-			“orderNumber”: “CUS001”,
-			“orderValue”: “50.00”
-	}
-}
+track.event(
+	user_id="<user id in your db>",
+	event="Order Placed",
+	“traits”={
+		“orderCreatedBy”: “Gavin Roberts”,
+		“orderCreatedDate”: “2020-11-01T012:10:26.122Z”,
+		“orderNumber”: “CUS001”,
+		“orderValue”: “50.00”
+	},
+	country_code="+91",
+	phone_number="9999999999",
+)
 ```
 
 The above API call triggers an OrderPlaced event when your user makes an order on your website/app. The API call passes the event properties orderCreatedBy, orderCreatedDate, orderNumber and orderValue to the API endpoint.
@@ -223,7 +213,7 @@ The above API call triggers an OrderPlaced event when your user makes an order o
 </tr>
 
 <tr>
-<td>userId</td>
+<td>user_id</td>
 <td>String</td>
 <td>Optional</td>
 <td>Unique identifier for the user.</td>
@@ -246,10 +236,28 @@ The above API call triggers an OrderPlaced event when your user makes an order o
 </tr>
 
 <tr>
-<td>createdAt	</td>
+<td>created_at	</td>
 <td>Date</td>
 <td>Optional</td>
 <td>Timestamp of the event in ISO-8601 format date string. If you have not passed the “createdAt” property, we will automatically use the current utc server time as the value of “createdAt”
+</td>
+</tr>
+
+<tr>
+<td>phone_number</td>
+<td>String</td>
+<td><strong>Mandatory**</strong></td>
+<td>phone number of the user without the country code (we recommend that you send the Whatsapp phone number of the user, so that you can send messages to that user via interakt, else the messages won’t get sent)
+
+</td>
+</tr>
+
+<tr>
+<td>country_code</td>
+<td>String</td>
+<td><strong>Mandatory**</strong></td>
+<td>Country code of the phone number. The default value is “+91”.
+
 </td>
 </tr>
 
