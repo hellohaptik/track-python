@@ -68,7 +68,8 @@ track.user(
 	traits={
 		"name": "John Doe",
 		"email": "john@email.com",
-		"age": 24
+		"age": 24,
+		“dob”: “1998-01-01”
 	}
 )
 ```
